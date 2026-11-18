@@ -1,0 +1,9 @@
+:host {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem 1rem;
+  background:
+    radial-gradient(circle at 15% 10%, var(--color-bg-accent), transparent 45%),
+    radial-gradient(circle at 85% 90%, var(--color-bg-accent), transparent 40%), var(--color-bg);
+}

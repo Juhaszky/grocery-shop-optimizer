@@ -1,1 +1,73 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-bg: #f4f7f4;
+  --color-bg-accent: #e3efe5;
+  --color-surface: #ffffff;
+  --color-text: #1c2420;
+  --color-text-muted: #5f6b64;
+  --color-border: #d6ded8;
+  --color-input-bg: #f9fbf9;
+  --color-primary: #2f8f4e;
+  --color-primary-hover: #267540;
+  --color-primary-contrast: #ffffff;
+  --color-focus: rgb(47 143 78 / 0.25);
+  --color-danger: #c53b3b;
+  --color-danger-focus: rgb(197 59 59 / 0.2);
+
+  --radius-sm: 0.5rem;
+  --radius-lg: 1rem;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px rgb(0 0 0 / 0.08);
+
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #111613;
+    --color-bg-accent: #16231a;
+    --color-surface: #1a211d;
+    --color-text: #e6ece8;
+    --color-text-muted: #9aa69f;
+    --color-border: #2e3832;
+    --color-input-bg: #141a16;
+    --color-primary: #3fae63;
+    --color-primary-hover: #52c076;
+    --color-primary-contrast: #0b130e;
+    --color-focus: rgb(63 174 99 / 0.3);
+    --color-danger: #ef6b6b;
+    --color-danger-focus: rgb(239 107 107 / 0.25);
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.35);
+
+    color-scheme: dark;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+router-outlet {
+  display: none;
+}

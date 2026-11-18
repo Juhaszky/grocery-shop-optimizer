@@ -1,0 +1,13 @@
+<div class="products-page">
+  <div class="toolbar">
+    <app-product-search (search)="searchTerm.set($event)" />
+    <button (click)="addProduct()">add</button>
+  </div>
+  <div class="products">
+    @for (product of filteredProducts(); track product.name) {
+      <app-product-item [product]="product" />
+    } @empty {
+      <p>Nincs találat.</p>
+    }
+  </div>
+</div>

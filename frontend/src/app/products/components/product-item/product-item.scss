@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+  padding: 1rem;
+  background-color: var(--color-bg);
+  border-radius: 1em;
+
+  p {
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+.product-img {
+  flex: none;
+  width: 100px;
+  height: 100px;
+  background-color: var(--color-border);
+  border-radius: 0.2em;
+}
+
+@media (max-width: 640px) {
+  .product {
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .product-img {
+    width: 64px;
+    height: 64px;
+  }
+}

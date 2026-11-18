@@ -1,0 +1,137 @@
+<section class="auth-card" aria-labelledby="auth-title">
+  <header class="auth-header">
+    <div class="brand">
+      <span class="brand-logo" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="9" cy="20" r="1.5" />
+          <circle cx="18" cy="20" r="1.5" />
+          <path d="M2 3h3l2.7 12.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.5L21 8H6.2" />
+        </svg>
+      </span>
+      <span class="brand-name">Grocery Shop Optimizer</span>
+    </div>
+    <h1 id="auth-title">{{ title() }}</h1>
+    <p class="subtitle">{{ subtitle() }}</p>
+  </header>
+
+  <form class="auth-form" (submit)="handleSubmit($event)" novalidate>
+    @if (!isLogin()) {
+      <div class="field" [class.has-error]="authForm.name().touched() && authForm.name().invalid()">
+        <label for="auth-name">Name</label>
+        <input
+          id="auth-name"
+          type="text"
+          autocomplete="name"
+          placeholder="Jane Doe"
+          [formField]="authForm.name"
+          aria-describedby="auth-name-error"
+        />
+        @if (authForm.name().touched()) {
+          @for (err of authForm.name().errors(); track err.kind) {
+            <span class="field-error" id="auth-name-error">{{ err.message }}</span>
+          }
+        }
+      </div>
+    }
+
+    <div class="field" [class.has-error]="authForm.email().touched() && authForm.email().invalid()">
+      <label for="auth-email">Email</label>
+      <input
+        id="auth-email"
+        type="email"
+        autocomplete="email"
+        placeholder="you@example.com"
+        [formField]="authForm.email"
+        aria-describedby="auth-email-error"
+      />
+      @if (authForm.email().touched()) {
+        @for (err of authForm.email().errors(); track err.kind) {
+          <span class="field-error" id="auth-email-error">{{ err.message }}</span>
+        }
+      }
+    </div>
+
+    <div
+      class="field"
+      [class.has-error]="authForm.password().touched() && authForm.password().invalid()"
+    >
+      <div class="label-row">
+        <label for="auth-password">Password</label>
+        @if (isLogin()) {
+          <a class="link small" href="#" (click)="$event.preventDefault()">Forgot password?</a>
+        }
+      </div>
+      <div class="input-with-action">
+        <input
+          id="auth-password"
+          [type]="showPassword() ? 'text' : 'password'"
+          [attr.autocomplete]="isLogin() ? 'current-password' : 'new-password'"
+          placeholder="••••••••"
+          [formField]="authForm.password"
+          aria-describedby="auth-password-error"
+        />
+        <button
+          type="button"
+          class="icon-button"
+          (click)="togglePassword()"
+          [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+          [attr.aria-pressed]="showPassword()"
+        >
+          @if (showPassword()) {
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3 3l18 18" />
+              <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8" />
+              <path
+                d="M9.9 5.1A10.4 10.4 0 0 1 12 5c6 0 9.5 7 9.5 7a17 17 0 0 1-3.2 4.1M6.6 6.6A17 17 0 0 0 2.5 12S6 19 12 19a9.7 9.7 0 0 0 5.4-1.6"
+              />
+            </svg>
+          } @else {
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          }
+        </button>
+      </div>
+      @if (authForm.password().touched()) {
+        @for (err of authForm.password().errors(); track err.kind) {
+          <span class="field-error" id="auth-password-error">{{ err.message }}</span>
+        }
+      }
+    </div>
+
+    <button class="primary-button" type="submit" [disabled]="authForm().submitting()">
+      {{ submitLabel() }}
+    </button>
+  </form>
+
+  <p class="switch-mode">
+    {{ isLogin() ? "Don't have an account?" : 'Already have an account?' }}
+    <button type="button" class="link" (click)="toggleMode()">
+      {{ isLogin() ? 'Sign up' : 'Sign in' }}
+    </button>
+  </p>
+</section>
